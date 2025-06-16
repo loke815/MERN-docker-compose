@@ -11,7 +11,18 @@ WORKDIR /app
 COPY package.json .
 
 # Run the command inside your image filesystem
-RUN npm install
+#It installs all Node.js dependencies listed in package.json.
+
+#It skips all scripts listed under:
+
+#"preinstall"
+
+#"install"
+
+#"postinstall"
+
+RUN npm install --ignore-scripts
+
 
 # Inform Docker that the container is listening on the specified port at runtime
 EXPOSE 5173
