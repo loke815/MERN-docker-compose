@@ -7,6 +7,7 @@ FROM node:18.9.1
 # Set the working directory
 WORKDIR /app
 
+ENV CYPRESS_INSTALL_BINARY=0
 # Copy the file from your host to your current location
 COPY package.json .
 
