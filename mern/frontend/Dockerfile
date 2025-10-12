@@ -1,8 +1,6 @@
-# Use the official image as a parent image
 FROM node:18.9.1
 WORKDIR /app
-COPY package.json .
+COPY package*.json ./
 RUN npm install
-EXPOSE 5173
 COPY . .
-CMD ["npm", "run", "dev"]
+CMD [ "npm","run","dev"]
