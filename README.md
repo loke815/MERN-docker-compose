@@ -1,75 +1,28 @@
-<<<<<<< HEAD
-# A simple MERN stack application 
+## Docker Setup
 
-### Create a network for the docker containers
+This project includes optimized Docker images for frontend and backend. You can run the entire stack locally using Docker Compose.
 
-`docker network create demo`
+### Run from Docker Hub
 
-### Build the client 
+Pull the production-ready images and run:
 
-```sh
-cd mern/frontend
-docker build -t mern-frontend .
-```
+```bash
+docker-compose up -d
 
-### Run the client
+## run on locally ---
+Frontend: http://localhost:5173
+Backend API: http://localhost:5050
 
-`docker run --name=frontend --network=demo -d -p 5173:5173 mern-frontend`
 
-### Verify the client is running
+If you want to build your own images:
 
-Open your browser and type `http://localhost:5173`
+# Build backend
+docker build -t <your-username>/mern-backend:prod ./backend
 
-### Run the mongodb container
+# Build frontend
+docker build -t <your-username>/mern-frontend:prod ./frontend
 
-`docker run --network=demo --name mongodb -d -p 27017:27017 -v ~/opt/data:/data/db mongo:latest`
+# Start services
+docker-compose up -d
 
-### Build the server
-
-```sh
-cd mern/backend
-docker build -t mern-backend .
-```
-
-### Run the server
-
-`docker run --name=backend --network=demo -d -p 5050:5050 mern-backend`
-
-## Using Docker Compose
-
-`docker compose up -d`
-
-=======
-# A simple MERN stack application
-
-**Note** - To run this project using `docker compose`, follow the below steps.
-
-Switch to the `compose` branch to learn the
-
-1. Implementation of `Dockerfile` for `client` and `server`.
-2. Run the containers using `Docker Compose`.
-
-## Run it local without Docker
-
-### Prerequisite
-
-- Install `npm`
-
-#### Start Server:
-
-```
-cd mern/server
-npm install
-npm start
-```
-
-#### Start Client
-
-```
-cd mern/client
-npm install
-npm run dev
-```
-
-<img width="1790" alt="Screenshot 2024-08-31 at 11 07 58 PM" src="https://github.com/user-attachments/assets/f414230b-8bd6-4393-b8de-6a10444a8dfd">
->>>>>>> 326d25015f241f61f2b849ee11481fe9e5f225c4
+s
