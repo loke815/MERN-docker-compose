@@ -1,0 +1,41 @@
+services:
+  backend:
+    image: amanyadav860/mern-backend:prod  # use your pushed backend image
+    container_name: mern_backend
+    ports:
+      - "5050:5050"
+    networks:
+      - mern_network
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/mydatabase
+    depends_on:
+      - mongodb
+
+  frontend:
+    image: amanyadav860/mern-frontend:prod  # use your pushed frontend image
+    container_name: mern_frontend
+    ports:
+      - "5173:3000"  # frontend serve runs on 3000 in container, map to 5173 locally
+    networks:
+      - mern_network
+    environment:
+      REACT_APP_API_URL: http://backend:5050
+
+  mongodb:
+    image: mongo:latest
+    container_name: mern_mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - mern_network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  mern_network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+

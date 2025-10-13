@@ -1,40 +1,28 @@
-# A simple MERN stack application 
+## Docker Setup
 
-### Create a network for the docker containers
+This project includes optimized Docker images for frontend and backend. You can run the entire stack locally using Docker Compose.
 
-`docker network create demo`
+### Run from Docker Hub
 
-### Build the client 
+Pull the production-ready images and run:
 
-```sh
-cd mern/frontend
-docker build -t mern-frontend .
-```
+```bash
+docker-compose up -d
 
-### Run the client
+## run on locally ---
+Frontend: http://localhost:5173
+Backend API: http://localhost:5050
 
-`docker run --name=frontend --network=demo -d -p 5173:5173 mern-frontend`
 
-### Verify the client is running
+If you want to build your own images:
 
-Open your browser and type `http://localhost:5173`
+# Build backend
+docker build -t <your-username>/mern-backend:prod ./backend
 
-### Run the mongodb container
+# Build frontend
+docker build -t <your-username>/mern-frontend:prod ./frontend
 
-`docker run --network=demo --name mongodb -d -p 27017:27017 -v ~/opt/data:/data/db mongo:latest`
+# Start services
+docker-compose up -d
 
-### Build the server
-
-```sh
-cd mern/backend
-docker build -t mern-backend .
-```
-
-### Run the server
-
-`docker run --name=backend --network=demo -d -p 5050:5050 mern-backend`
-
-## Using Docker Compose
-
-`docker compose up -d`
-
+s
