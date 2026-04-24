@@ -18,7 +18,7 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('mern/backend') {
-                    sh 'docker build -t mern-backend .'
+                    sh 'docker build -t lokesh815/mern-backend:latest .'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('mern/frontend') {
-                    sh 'docker build -t mern-frontend .'
+                    sh 'docker build -t lokesh815/mern-frontend:latest .'
                 }
             }
         }
@@ -35,8 +35,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-creds') {
-                        sh 'docker push mern-backend'
-                        sh 'docker push mern-frontend'
+                        sh 'docker push lokesh815/mern-backend:latest'
+                        sh 'docker push lokesh815/mern-frontend:latest'
                     }
                 }
             }
