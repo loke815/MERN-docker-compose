@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                dir('backend') {
+                dir('Backend') {
                     sh 'docker build -t mern-backend .'
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
+                dir('Frontend') {
                     sh 'docker build -t mern-frontend .'
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-creds') {
-                        sh 'docker push mern-backend '
+                        sh 'docker push mern-backend'
                         sh 'docker push mern-frontend'
                     }
                 }
