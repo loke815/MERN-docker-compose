@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                dir('Backend') {
+                dir('mern/backend') {
                     sh 'docker build -t mern-backend .'
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('Frontend') {
+                dir('mern/frontend') {
                     sh 'docker build -t mern-frontend .'
                 }
             }
