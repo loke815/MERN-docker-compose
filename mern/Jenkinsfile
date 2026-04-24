@@ -18,7 +18,7 @@ pipeline {
         stage('Build Backend') {
             steps {
                 dir('backend') {
-                    sh 'docker build -t $IMAGE_BACKEND:$BUILD_NUMBER .'
+                    sh 'docker build -t mern-backend .'
                 }
             }
         }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'docker build -t $IMAGE_FRONTEND:$BUILD_NUMBER .'
+                    sh 'docker build -t mern-frontend .'
                 }
             }
         }
@@ -35,8 +35,8 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'dockerhub-creds') {
-                        sh 'docker push $IMAGE_BACKEND:$BUILD_NUMBER'
-                        sh 'docker push $IMAGE_FRONTEND:$BUILD_NUMBER'
+                        sh 'docker push mern-backend '
+                        sh 'docker push mern-frontend'
                     }
                 }
             }
